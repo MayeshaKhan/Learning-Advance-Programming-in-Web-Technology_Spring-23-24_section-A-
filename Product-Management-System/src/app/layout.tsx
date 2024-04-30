@@ -24,7 +24,7 @@ export default function RootLayout({
             padding: "1rem",
           }}
         >
-          <h1>Employee Management System</h1>
+          <h1>Product Management System</h1>
           <Navigation/>
         </header>
         

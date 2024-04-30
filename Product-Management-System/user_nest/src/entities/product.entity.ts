@@ -1,30 +1,17 @@
 import * as bcrypt from 'bcrypt';
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity("users")
-export class User{
+@Entity("products")
+export class Product{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({nullable:false})
     name: string;
     
-   
-   
     @Column({ nullable:false})
-    email: string;
+    price: number;
 
     @Column({nullable:false})
-    username: string;
-
-    @Column({nullable:false})
-    password: string;
-
-
-
-    
-    @BeforeInsert()
-    async HashPassword() {
-      this.password = await bcrypt.hash(this.password, 12);
-    }
+    quantity: number;
 }
