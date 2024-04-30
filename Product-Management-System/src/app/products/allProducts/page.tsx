@@ -2,15 +2,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function AllUsers() {
-  const [users, setUsers] = useState<any[]>([]); 
+export default function AllProduct() {
+  const [product, setProduct] = useState<any[]>([]); 
 
   useEffect(() => {
    
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/user');
-        setUsers(response.data);
+        const response = await axios.get('http://localhost:3000/product');
+        setProduct(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -20,11 +20,11 @@ export default function AllUsers() {
 
   return (
     <div>
-      <h1>Users List</h1>
+      <h1>Products List</h1>
       <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.name} - {user.email}
+        {product.map(product => (
+          <li key={product.id}>
+            {product.name} - {product.price}
           </li>
         ))}
       </ul>

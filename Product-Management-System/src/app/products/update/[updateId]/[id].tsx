@@ -6,9 +6,8 @@ import { useRouter } from 'next/router';
 
 export default function Update() {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [price, setPrice] = useState('');
+ 
   
   const [error, setError] = useState('');
 
@@ -19,24 +18,17 @@ export default function Update() {
     setName(e.target.value);
   };
 
-  const handleChangeEmail = (e : ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const handleChangeprice = (e : ChangeEvent<HTMLInputElement>) => {
+    setPrice(e.target.value);
   };
-  const handleChangeUsername= (e : ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handleChangePassword = (e : ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
+  
   
 
   const handleSubmit = (e : SyntheticEvent) => {
     e.preventDefault();
-    if (!name || !email || !username ||!password )
+    if (!name || !price  )
        {
-      console.log(name, email, username, password);
+      console.log(name, price);
       setError('All fields are required');
     } 
     
@@ -50,9 +42,8 @@ export default function Update() {
       setError(e);
     }
       setName('');
-      setEmail('');
-      setUsername('');
-      setPassword('');
+      setPrice('');
+      
       setError('');
     }
 
@@ -61,11 +52,10 @@ export default function Update() {
    try {
     const jsonData = {
       name:name,
-      email: email,
-      username: username,
-      password: password
+      price: price,
+     
     }
-    const response = await axios.patch(`http://localhost:3000/user/{id}`, jsonData);
+    const response = await axios.patch(`http://localhost:3000/price/{id}`, jsonData);
     //${id}
      const data = response.data;
      console.log(data);
@@ -84,18 +74,8 @@ export default function Update() {
         </div>
         <br/><br/>
         <div>
-          <label>Email: </label>
-          <input type="email" name="email" value={email} onChange={handleChangeEmail} />
-        </div>
-        <br/><br/>
-        <div>
-          <label>Username: </label>
-          <input type="text" name="username" value={username} onChange={handleChangeUsername} />
-        </div>
-        <br/><br/>
-        <div>
-          <label>Password: </label>
-          <input type="password" name="password" value={password} onChange={handleChangePassword} />
+          <label>price: </label>
+          <input type="price" name="price" value={price} onChange={handleChangeprice} />
         </div>
         <br/><br/>
         {error && <p>{error}</p>}
